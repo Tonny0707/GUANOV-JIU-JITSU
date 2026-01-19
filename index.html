@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUANOV JIU JITSU - Бразильское джиу-джитсу</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #111;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            color: #e63946;
+            font-size: 2.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: #e63946;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1621743457705-5f3a162558c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #111;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: #e63946;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .schedule {
+            background-color: #f9f9f9;
+        }
+
+        .schedule-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .schedule-day {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .schedule-day:hover {
+            transform: translateY(-10px);
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            color: #e63946;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .class-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .class-time {
+            font-weight: 700;
+            color: #111;
+        }
+
+        .class-type {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .trainers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .trainer-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .trainer-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .trainer-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .trainer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .trainer-card:hover .trainer-img img {
+            transform: scale(1.05);
+        }
+
+        .trainer-info {
+            padding: 25px;
+        }
+
+        .trainer-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .trainer-belt {
+            color: #e63946;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .philosophy {
+            background-color: #111;
+            color: white;
+        }
+
+        .philosophy .section-title h2 {
+            color: white;
+        }
+
+        .philosophy-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .philosophy-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .philosophy-icon {
+            color: #e63946;
+            font-size: 2rem;
+            width: 50px;
+            flex-shrink: 0;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-icon {
+            color: #e63946;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+
+        footer {
+            background-color: #0a0a0a;
+            color: #aaa;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #e63946;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #222;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: #e63946;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .philosophy-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src=""></i>
+                <div class="logo-text">GUANOV <span>JIU JITSU</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#schedule">Расписание</a></li>
+                    <li><a href="#trainers">Тренеры</a></li>
+                    <li><a href="#philosophy">Философия</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Бразильское джиу-джитсу</h1>
+            <p>Добро пожаловать в нашу академию бразильского джиу-джитсу. Мы обучаем искусству самозащиты, развиваем физическую форму и укрепляем дух через философию этого боевого искусства.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>О нашей академии</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Добро пожаловать в академию GUANOV JIU JITSU</h3>
+                    <p>Наша академия бразильского джиу-джитсу была основана в 2023 году и с тех пор является одним из ведущих центров подготовки в регионе.</p>
+                    <p>Мы предлагаем тренировки для всех уровней подготовки: от начинающих, которые только знакомятся с этим искусством, до продвинутых спортсменов, готовящихся к соревнованиям.</p>
+                    <p>В нашем зале вы найдете современное оборудование, просторные раздевалки и душевые, а также уютную зону отдыха для общения после тренировок.</p>
+                    <p>Мы гордимся тем, что создали дружелюбное и поддерживающее сообщество, где каждый ученик чувствует себя частью большой семьи.</p>
+                </div>
+                
+                <div class="about-image">
+                    <img src="XXXL.webp" alt="Тренировка по джиу-джитсу">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule" class="schedule">
+        <div class="container">
+            <div class="section-title">
+                <h2>Расписание занятий</h2>
+            </div>
+            
+            <div class="schedule-table">
+                <div class="schedule-day">
+                    <div class="day-title">Понедельник</div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="day-title">Вторник</div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="day-title">Среда</div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="day-title">Четверг</div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="day-title">Пятница</div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                </div>
+                
+                <div class="schedule-day">
+                    <div class="day-title">Суббота</div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time"></div>
+                        <div class="class-type"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trainers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши тренеры</h2>
+            </div>
+            
+            <div class="trainers-container">
+                <div class="trainer-card">
+                    <div class="trainer-img">
+                        <img src="photo_2025-06-25_14-01-22.png" alt="Тренер Арсен Гуанов">
+                    </div>
+                    <div class="trainer-info">
+                        <div class="trainer-name"> Гуанов Арсен</div>
+                        <div class="trainer-belt">Коричневый пояс</div>
+                        <p>Основатель академии. Опыт преподавания: 4 года. Чемпион чемпионатов России и Европы и Мира. Специализируется на технике переворотов и контролей.</p>
+                    </div>
+                </div>
+                
+                <div class="trainer-card">
+                    <div class="trainer-img">
+                        <img src="2T2A5602.jpg" alt="Тренер Жиляев Алим">
+                    </div>
+                    <div class="trainer-info">
+                        <div class="trainer-name">Алим Жиляев </div>
+                        <div class="trainer-belt">Синий пояс</div>
+                        <p>Опыт преподавания: 2 года. Один из первых учеников академии в зале с самого открытия. Ведет детские группы и помогает развивать зал.</p>
+                    </div>
+                </div>
+                
+                <div class="trainer-card">
+                    <div class="trainer-img">
+                        <img src="2T2A5601.jpg" alt="Тренер Бабгоев Тамирлан">
+                    </div>
+                    <div class="trainer-info">
+                        <div class="trainer-name">Бабгоев Тамирлан</div>
+                        <div class="trainer-belt">Синий пояс </div>
+                        <p>Опыт преподавания: 1 год. Призер чемпионатов России и Европы и Мира. Специализируется на технике обхода защиты и удушающих. Также помогает вести детские группы.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="philosophy">
+        <div class="container">
+            <div class="section-title">
+                <h2>Философия джиу-джитсу</h2>
+            </div>
+            
+            <div class="philosophy-content">
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                        <h3>Развитие ума</h3>
+                        <p>Джиу-джитсу — это не просто физическая активность, а искусство стратегии и тактики. Каждая тренировка развивает критическое мышление, способность быстро принимать решения и анализировать ситуацию.</p>
+                    </div>
+                </div>
+                
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h3>Сообщество и уважение</h3>
+                        <p>В нашей академии мы создаем поддерживающее сообщество, где каждый ученик уважает друг друга. Мы верим, что рост происходит через взаимопомощь и обмен знаниями.</p>
+                    </div>
+                </div>
+                
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h3>Самозащита и уверенность</h3>
+                        <p>Изучение джиу-джитсу дает не только физические навыки самозащиты, но и внутреннюю уверенность. Эта уверенность проявляется во всех сферах жизни, помогая преодолевать challenges и достигать целей.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Контакты</h2>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Адрес</h3>
+                    <p>ул. Идарова, 64, Нальчик</p>
+                    <p></p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Телефон</h3>
+                    <p>+7 (928) 079-99-14</p>
+                    <p>+7 (968) 741-77-72</p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>guanov07@gmail.com</p>
+                    <p></p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Часы работы</h3>
+                    <p>Пн-Пт: 8:00 - 20:30</p>
+                    <p>Сб-Вс: 8:00 - 20:30</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GUANOV JIU JITSU</h3>
+                    <p>Академия бразильского джиу-джитсу, где каждый может найти свой путь в этом искусстве. Мы обучаем не только технике, но и философии, которая меняет жизнь.</p>
+                    <div class="social-icons">
+                        <a href="https://vk.ru/id86240303"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.instagram.com/guanov_jiu_jitsu?igsh=MTVydWRxMHNnYnpsNw=="><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@guanovjj?si=TU8WhYEjzGPH43p1"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Быстрые ссылки</h3>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#schedule">Расписание</a></li>
+                        <li><a href="#trainers">Тренеры</a></li>
+                        <li><a href="#philosophy">Философия</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Программы</h3>
+                    <ul>
+                        <li><a href="#schedule">Детские группы</a></li>
+                        <li><a href="#schedule">Взрослые начинающие</a></li>
+                        <li><a href="#schedule">Продвинутый уровень</a></li>
+                        <li><a href="#schedule">Семинары</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p> </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+  
+                if (window.innerWidth <= 768) {
+                    document.querySelector('nav ul').style.display = 'none';
+                }
+            });
+        });
+        
+
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('nav ul');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (window.innerWidth <= 768 && nav.style.display === 'flex' && 
+                !nav.contains(e.target) && !menuBtn.contains(e.target)) {
+                nav.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
